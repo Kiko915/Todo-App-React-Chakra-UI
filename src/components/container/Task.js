@@ -4,6 +4,7 @@ import Form from '../presentational/Form';
 import Lists from './Lists';
 import Alerts from '../presentational/Alerts';
 
+//TODO: Add localStorage feature to save our Tasks!
 function Task() {
     const [val, setVal] = useState('');
     const [tasks, setTasks] = useState([]);
