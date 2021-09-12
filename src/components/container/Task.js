@@ -4,15 +4,21 @@ import Form from '../presentational/Form';
 import Lists from './Lists';
 import Alerts from '../presentational/Alerts';
 
-//TODO: Add localStorage feature to save our Tasks!
 function Task() {
     const [val, setVal] = useState('');
-    const [tasks, setTasks] = useState([]);
+    const [tasks, setTasks] = useState(() => {
+        if(localStorage.getItem('tasks')) {
+            const savedItem = localStorage.getItem('tasks');
+            return JSON.parse(savedItem);
+        } 
+        return [];
+    });
     const [open, setOpen] = useState(false);
     const cancelRef = useRef(null);
 
     useEffect(() => {
         console.log(tasks);
+        localStorage.setItem('tasks', JSON.stringify(tasks));
     }, [tasks])
 
     const changeVal = value => {
